@@ -10,6 +10,7 @@ class Player(CircleShape):
         if not isinstance(self.position, pygame.Vector2):
             self.position = pygame.Vector2(self.position)
 
+    # Drawing triangles is hard owo
     def triangle(self):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
         right = pygame.Vector2(0, 1).rotate(self.rotation + 90) * (self.radius / 1.5)
