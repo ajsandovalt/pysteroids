@@ -1,7 +1,10 @@
 import pygame
 from pygame.mixer_music import play
 from constants import *
-from player import Player
+from player import *
+from asteroid import *
+from asteroidsfield import *
+import sys
 
 def main():
     print("Starting Asteroids!")
@@ -28,9 +31,19 @@ def main():
     #Sprite group to draw all our sprites on screen.
     drawable = pygame.sprite.Group()
 
+    #Sprite group for the asteroids
+    asteroids = pygame.sprite.Group()
+
     #Create a new player object and add them to the groups
     Player.containers = (updatable, drawable)
     player = Player(x, y)
+
+    # Add Asteroid to the sprite groups
+    Asteroid.containers = (asteroids, updatable, drawable)
+
+    # Add Asteroidsfield only to updatable group
+    AsteroidField.containers = (updatable)
+    asteroidfield = AsteroidField()
 
     #Gameloop:
     while True:
@@ -42,7 +55,13 @@ def main():
         #Update all of the objects on screen
         updatable.update(dt)
 
-        #Background color
+        #Check for collitions, exit if true
+        for asteroid in asteroids:
+            if asteroid.is_colliding(player):
+                print("Game over!")
+                sys.exit(0)
+
+        #Fill surface with color
         screen.fill("black")
 
         #Draw all objects on screen
