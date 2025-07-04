@@ -1,5 +1,6 @@
 # pysteroids
-Basic asteroids clone
+
+Basic asteroids clone, written in python!
 
 ## Controls
 
