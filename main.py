@@ -62,11 +62,17 @@ def main():
         #Update all of the objects on screen
         updatable.update(dt)
 
-        #Check for collitions, exit if true
+        #Check for collitions with player, exit if true
         for asteroid in asteroids:
             if asteroid.is_colliding(player):
                 print("Game over!")
                 sys.exit(0)
+
+            # Check if a bullet collides with an asteroid, kill asteroid if true.
+            for bullet in shots:
+                if bullet.is_colliding(asteroid):
+                    asteroid.split()
+                    bullet.kill()
 
         #Fill surface with color
         screen.fill("black")
