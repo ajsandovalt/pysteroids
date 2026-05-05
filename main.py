@@ -35,20 +35,20 @@ def main():
     dt = 0 # dt = Delta Time
 
     # Initial game screen:
-
+    
     running = True 
     while running:
         log_state()
-
+    
         screen.fill("black")
         my_font = pygame.font.SysFont(None, 30)
-
+    
         text_surface = my_font.render('Pysteroids, press ENTER to begin', True, (255, 255, 255))
-
+    
         screen.blit(text_surface, (SCREEN_WIDTH / 2 , SCREEN_HEIGHT / 2))
         pygame.display.flip() 
-
-
+    
+    
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
